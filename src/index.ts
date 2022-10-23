@@ -1,11 +1,20 @@
-import "dotenv/config";
 import { ethers } from "ethers";
 import { provider } from "./provider";
+import { wallet, play } from "./wallet";
 
 async function main() {
-  // console.log('Current block number', await provider.getBlockNumber())
-  const vitaBalance = ethers.BigNumber.from(await provider.getBalance("vitalik.eth"))
-  console.log('Vitalik balance is:', ethers.utils.formatEther(vitaBalance))
+  await play()
 }
 
-main()
+if (require.main === module) {
+  main()
+      .then(() => process.exit(0))
+      .catch(err => {
+          console.error(err);
+          process.exit(1);
+      });
+} else {
+  main().then(p => {
+      module.exports = p;
+  })
+}
