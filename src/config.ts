@@ -1,3 +1,7 @@
 import "dotenv/config";
 
-export const { RPC_PROVIDER, MNEMONIC } =  process.env
+export const {
+  GOERLI_RPC_PROVIDER,
+  MAINNET_RPC_PROVIDER,
+  MNEMONIC,
+} =  process.env
